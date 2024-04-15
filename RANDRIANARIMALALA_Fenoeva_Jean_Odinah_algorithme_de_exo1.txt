@@ -1,0 +1,53 @@
+Algorithme pour générer la table de vérité et afficher les formes canoniques d'une fonction logique :
+
+Fonction generer_table_verite(nombres_variables, fonction_logique, variables):
+    table_verite ← []
+    Pour chaque combinaison de valeurs booléennes des variables:
+        Pour chaque combinaison possible de valeurs binaires pour les variables:
+            Ajouter la combinaison à la liste des combinaisons
+            Calculer le résultat de la fonction logique pour cette combinaison
+            Ajouter la combinaison et son résultat à la table de vérité
+    Retourner la table de vérité
+
+Fonction afficher_formes_canoniques(table_verite, variables):
+    mintermes ← Liste vide
+    maxtermes ← Liste vide
+    Pour chaque entrée dans la table de vérité:
+        Si le résultat est vrai:
+            Ajouter la combinaison aux mintermes
+        Sinon:
+            Ajouter la combinaison aux maxtermes
+    fonction_premiere_forme ← Liste vide
+    Pour chaque minterme dans mintermes:
+        termes ← Liste vide
+        Pour chaque variable dans variables:
+            Si la variable est vraie dans minterme:
+                Ajouter la variable à termes
+            Sinon:
+                Ajouter "not" + la variable à termes
+        Ajouter la conjonction des termes à la fonction_premiere_forme
+    Afficher la première forme canonique de la fonction en joignant toutes les formes premières par des "ou"
+
+    fonction_deuxieme_forme ← Liste vide
+    Pour chaque maxterme dans maxtermes:
+        termes ← Liste vide
+        Pour chaque variable dans variables:
+            Si la variable est fausse dans maxterme:
+                Ajouter la variable à termes
+            Sinon:
+                Ajouter "not" + la variable à termes
+        Ajouter la disjonction des termes à la fonction_deuxieme_forme
+    Afficher la deuxième forme canonique de la fonction en joignant toutes les formes secondes par des "et"
+
+Fonction principale():
+    nombres_variables ← Demander à l'utilisateur le nombre de variables
+    variables ← Liste vide
+    Pour chaque variable de 1 à nombres_variables:
+        Demander à l'utilisateur le nom de la variable
+        Ajouter le nom de la variable à la liste des variables
+    Demander à l'utilisateur la fonction logique
+    table_verite ← Appeler la fonction generer_table_verite avec nombres_variables, fonction_logique, et variables comme arguments
+    Afficher la table de vérité
+    Appeler la fonction afficher_formes_canoniques avec table_verite et variables comme arguments
+
+Appeler la fonction principale
